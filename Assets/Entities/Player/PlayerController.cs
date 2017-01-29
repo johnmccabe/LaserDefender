@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void MoveWithKeyboard() {
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.A)) {
 			transform.position += Vector3.left * speed * Time.deltaTime;
 		}
-		else if (Input.GetKey (KeyCode.RightArrow)) {
+		else if (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D)) {
 			transform.position += Vector3.right * speed * Time.deltaTime;
 		}
 
