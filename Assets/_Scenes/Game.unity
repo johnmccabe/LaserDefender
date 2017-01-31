@@ -560,6 +560,56 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1155660886002856, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_Name
+      value: ShredderTop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &2106917559
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -7.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878972972752098, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155660886002856, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
+      propertyPath: m_Name
+      value: ShredderBottom
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fae29198e6f02948aff3b252696577a, type: 2}
   m_IsPrefabParent: 0
