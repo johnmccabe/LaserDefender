@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class FormationController : MonoBehaviour {
 
 	public GameObject enemyPrefab;
 	public float width = 6f;
@@ -15,10 +15,7 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		InitialiseScreenBoundry ();
-		foreach (Transform child in transform) {
-			GameObject enemy = Instantiate (enemyPrefab, child.transform.position, Quaternion.identity) as GameObject;
-			enemy.transform.parent = child;
-		}
+		SpawnEnemies ();
 	}
 
 	void InitialiseScreenBoundry () {
@@ -29,6 +26,13 @@ public class EnemySpawner : MonoBehaviour {
 		xmin = leftBoundry.x;
 	}
 
+	void SpawnEnemies () {
+		foreach (Transform child in transform) {
+			GameObject enemy = Instantiate (enemyPrefab, child.transform.position, Quaternion.identity) as GameObject;
+			enemy.transform.parent = child;
+		}
+	}
+
 	void OnDrawGizmos () {
 		// Note that the z=0f in the Vector 3 is automatically added
 		Gizmos.DrawWireCube (transform.position, new Vector3 (width, height));
@@ -37,6 +41,11 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MoveFormation();
+
+		if (AllMembersDead ()) {
+			Debug.Log ("Empty Formationm Respawning");
+			SpawnEnemies ();
+		}
 	}
 
 	void MoveFormation () {
@@ -46,6 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 			transform.position += Vector3.left * formationSpeed * Time.deltaTime;
 		}
 
+		// check if the formation is exiting the playspace
 		float rightEdgeOfFormation = transform.position.x + (0.5f * width);
 		float leftEdgeOfFormation = transform.position.x - (0.5f * width);
 		// side whose boundry you check depends on the direction of movement
@@ -54,6 +64,17 @@ public class EnemySpawner : MonoBehaviour {
 		} else if (rightEdgeOfFormation > xmax) {
 			movingRight = false;
 		}
+	}
+
+	bool AllMembersDead () {
+		// Iterate over the children in the formation gameobject
+		foreach (Transform childPositionGameObject in transform) {
+			if (childPositionGameObject.childCount > 0) {
+				// if you find an enemy then return true
+				return false;
+			}
+		}
+		return true;
 	}
 }
 
