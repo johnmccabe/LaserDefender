@@ -8,6 +8,7 @@ public class FormationController : MonoBehaviour {
 	public float width = 6f;
 	public float height = 3.5f;
 	public float formationSpeed = 5f;
+	public float spawnDelay = 0.5f;
 
 	private bool movingRight = true;
 	private float xmin, xmax;
@@ -15,7 +16,7 @@ public class FormationController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		InitialiseScreenBoundry ();
-		SpawnEnemies ();
+		SpawnUntilFull ();
 	}
 
 	void InitialiseScreenBoundry () {
@@ -33,6 +34,17 @@ public class FormationController : MonoBehaviour {
 		}
 	}
 
+	void SpawnUntilFull () {
+		Transform freePosition = NextFreePosition ();
+		if (freePosition) {
+			GameObject enemy = Instantiate (enemyPrefab, freePosition.position, Quaternion.identity) as GameObject;
+			enemy.transform.parent = freePosition;
+		} 
+		if (NextFreePosition()) {
+			Invoke ("SpawnUntilFull", spawnDelay);
+		}
+	}
+
 	void OnDrawGizmos () {
 		// Note that the z=0f in the Vector 3 is automatically added
 		Gizmos.DrawWireCube (transform.position, new Vector3 (width, height));
@@ -43,8 +55,8 @@ public class FormationController : MonoBehaviour {
 		MoveFormation();
 
 		if (AllMembersDead ()) {
-			Debug.Log ("Empty Formationm Respawning");
-			SpawnEnemies ();
+			Debug.Log ("Empty Formation Respawning");
+			SpawnUntilFull ();
 		}
 	}
 
@@ -75,6 +87,15 @@ public class FormationController : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+
+	Transform NextFreePosition () {
+		foreach (Transform childPositionGameObject in transform) {
+			if (childPositionGameObject.childCount == 0) {
+				return childPositionGameObject;
+			}
+		}
+		return null;
 	}
 }
 
